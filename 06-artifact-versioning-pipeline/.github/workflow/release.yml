@@ -20,7 +20,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Extract Metadata
-        id: meta
         run: |
           echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
           echo "SHA_TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
@@ -39,3 +38,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.VERSION }}
+          generate_release_notes: true
