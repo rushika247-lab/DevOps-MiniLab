@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-app-deployment
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: todo-app
+
+  template:
+    metadata:
+      labels:
+        app: todo-app
+
+    spec:
+      containers:
+      - name: todo-app
+        image: rushika2007/todo-app:v1.0.3
+        ports:
+        - containerPort: 5000
+
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "500m"
